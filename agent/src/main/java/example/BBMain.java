@@ -34,7 +34,7 @@ public class BBMain {
 //                .intercept(MethodDelegation.to(ContextualInterceptor.class))
 //                .intercept(FixedValue.nullValue())
 //        )
-    .installOn(instrumentation);
+        .installOn(instrumentation);
 //    new AgentBuilder.Default()
 //        .type(ElementMatchers.nameEndsWith("Timed"))
 //        .transform((builder, type, classLoader, module, protectionDomain) ->

@@ -1,12 +1,9 @@
 package example;
 
 import net.bytebuddy.asm.Advice;
-import net.bytebuddy.implementation.bind.annotation.AllArguments;
 
 import java.lang.reflect.Executable;
 import java.lang.reflect.Parameter;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 final class MyVisitor {
 
