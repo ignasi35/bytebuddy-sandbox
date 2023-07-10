@@ -29,17 +29,6 @@ public class BBMain {
                     )
             )
         )
-//        .transform((builder, type, classLoader, module, protectionDomain) ->
-//            builder.constructor(ElementMatchers.isConstructor())
-//                .intercept(MethodDelegation.to(ContextualInterceptor.class))
-//                .intercept(FixedValue.nullValue())
-//        )
         .installOn(instrumentation);
-//    new AgentBuilder.Default()
-//        .type(ElementMatchers.nameEndsWith("Timed"))
-//        .transform((builder, type, classLoader, module, protectionDomain) ->
-//            builder.method(ElementMatchers.any())
-//                .intercept(MethodDelegation.to(TimingInterceptor.class))
-//        ).installOn(instrumentation);
   }
 }

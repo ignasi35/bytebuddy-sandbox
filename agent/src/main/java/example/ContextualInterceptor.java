@@ -41,13 +41,25 @@ public class ContextualInterceptor {
             .stream(clazz.getDeclaredFields())
             .map(Field::getName)
             .collect(Collectors.toList());
-    List<String> arguments = new ArrayList<String>(args.size());
+
+
+    List<String> changes = new ArrayList<String>(args.size());
     for (int i = 0; i < args.size(); i++) {
-      arguments.add(fields.get(i) + "=" + args.get(i));
+      String fieldName = fields.get(i);
+      String oldValue = clazz.getDeclaredMethod(fieldName).invoke(self).toString();
+      String newValue = args.get(i);
+      if (!oldValue.equals(newValue)) {
+        var s = fieldName;
+        s += ": ";
+        s += oldValue;
+        s += " => ";
+        s += newValue;
+        s += ",";
+        changes.add(s);
+      }
     }
 
-
-    var namedArguments = String.join(", ", arguments);
+    var namedArguments = String.join(", ", changes);
     System.out.println("Intercepted: " + classDetails + "#" + methodDetails + "\n  Values: " + namedArguments + "\n   Stack: " + stack);
     return superMethod.invoke(self, allArguments);
   }
