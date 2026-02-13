@@ -14,7 +14,9 @@ public class BBMain {
         .with(AgentBuilder.Listener.StreamWriting.toSystemError().withTransformationsOnly())
         .with(AgentBuilder.InstallationListener.StreamWriting.toSystemError())
         .type(
-            ElementMatchers.isAnnotatedWith(WithTracking.class)
+            ElementMatchers.nameContains("Paris$Pricing").or(
+                ElementMatchers.isAnnotatedWith(WithTracking.class)
+            )
         )
         .transform((builder, type, classLoader, module, protectionDomain) ->
             builder.method(ElementMatchers.named("copy"))

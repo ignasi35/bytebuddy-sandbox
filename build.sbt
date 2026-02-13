@@ -30,9 +30,9 @@ lazy val `agent-api` =Project(
   base = file("agent-api")
 )
   .settings(
-    // TODO: the agent should not be cross-built. It's pure Java
-    crossScalaVersions := supportedScalaVersions,
-    Compile/ packageDoc / publishArtifact := false
+    crossPaths := false, // remove the _2.12 prefix from the jar name
+    autoScalaLibrary := false, // remove the scala library from the list of dependencies in the POM
+      Compile/ packageDoc / publishArtifact := false
   )
 
 lazy val agent =Project(
@@ -41,9 +41,9 @@ lazy val agent =Project(
 )
   .enablePlugins(AssemblyPlugin)
   .settings(
-    // TODO: the agent should not be cross-built. It's pure Java
-    crossScalaVersions := supportedScalaVersions,
-  libraryDependencies += "net.bytebuddy" % "byte-buddy" % "1.14.5" ,
+    crossPaths := false, // remove the _2.12 prefix from the jar name
+    autoScalaLibrary := false, // remove the scala library from the list of dependencies in the POM
+    libraryDependencies += "net.bytebuddy" % "byte-buddy" % "1.14.5" ,
 //  libraryDependencies += (ThisBuild / organization).value % (sample.id) % (ThisBuild / version).value ,
  Compile / packageBin / packageOptions += Package.ManifestAttributes("Premain-Class" -> "example.BBMain"),
  Compile / packageBin / packageOptions += Package.ManifestAttributes("Can-Redefine-Classes" -> "true"),
@@ -56,8 +56,8 @@ lazy val agent =Project(
 lazy val `uber-agent` = project
   .settings(
     name := "bb-uber-agent-35",
-    // TODO: the agent should not be cross-built. It's pure Java
-    crossScalaVersions := supportedScalaVersions,
+    crossPaths := false, // remove the _2.12 prefix from the jar name
+    autoScalaLibrary := false, // remove the scala library from the list of dependencies in the POM
     // I am sober. no dependencies.
     Compile / packageBin := (agent / assembly).value
   )

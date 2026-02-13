@@ -60,7 +60,10 @@ public class ContextualInterceptor {
     }
 
     var namedArguments = String.join(", ", changes);
-    System.out.println("Intercepted: " + classDetails + "#" + methodDetails + "\n  Values: " + namedArguments + "\n   Stack: " + stack);
+//    System.out.println("Intercepted: " + classDetails + "#" + methodDetails + "\n  Values: " + namedArguments + "\n   Stack: " + stack);
+
+    
+
     return superMethod.invoke(self, allArguments);
   }
 
